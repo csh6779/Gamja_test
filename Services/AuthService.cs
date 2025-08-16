@@ -9,7 +9,7 @@ namespace GamjaTest.Services
     {
         private readonly AppDbContext _context;
 
-        public UserService(AppDbContext context)
+        public AuthService(AppDbContext context)
         {
             _context = context;
         }

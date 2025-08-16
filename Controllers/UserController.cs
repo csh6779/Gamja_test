@@ -10,7 +10,7 @@ namespace GamjaTest.Controllers
     {
         private readonly AuthService _authService;
 
-        public UsersController(AuthService authService)
+        public UserController(AuthService authService)
         {
             _authService = authService;
         }
@@ -20,7 +20,7 @@ namespace GamjaTest.Controllers
         {
             try
             {
-                var result = await _userService.RegisterUserAsync(request);
+                var result = await _authService.RegisterUserAsync(request);
                 return Created("", result);
             }
             catch (Exception ex)

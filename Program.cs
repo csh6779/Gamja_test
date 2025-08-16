@@ -1,5 +1,6 @@
 using GamjaTest.Data;
 using GamjaTest.Models;
+using GamjaTest.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
 
