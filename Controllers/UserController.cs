@@ -28,5 +28,39 @@ namespace GamjaTest.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var users = await _authService.GetAllUsersAsync();
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var user = await _authService.GetUserByIdAsync(id);
+            if (user == null)
+                return NotFound();
+            return Ok(user);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UserRequestDto request)
+        {
+            var updatedUser = await _authService.updatedUserAsync(id, request);
+            if (updatedUser == null)
+                return NotFound();
+            return Ok(updatedUser);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var success = await _authService.DeleteUserAsync(id);
+            if (!success)
+                return NotFound();
+            return NoContent(); // 204 응답
+        }
     }
 }
